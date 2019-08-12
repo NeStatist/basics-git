@@ -11,11 +11,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.artemchep.basics_git.App;
+import com.artemchep.basics_git.AddData;
 import com.artemchep.basics_git.R;
 import com.artemchep.basics_git.database.Store;
 import com.artemchep.basics_git.domain.Post;
 
 public class PostAddFragment extends Fragment {
+
+    private AddData callback;
+
+    public PostAddFragment(AddData callback) {
+        this.callback = callback;
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,7 +51,6 @@ public class PostAddFragment extends Fragment {
 
         final Store store = App.getStore(requireContext());
         store.insert(new Post(text));
-
-        // TODO: Pop the "Post add" fragment
+        callback.onAddDataPost();
     }
 }

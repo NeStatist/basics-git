@@ -12,13 +12,16 @@ import java.util.List;
  * nothing.
  */
 public class StoreStub implements Store {
+    private static ArrayList<Post> data = new ArrayList<Post>();
+
     @Override
     public void insert(@NonNull Post post) {
+        data.add(post);
     }
 
     @NonNull
     @Override
     public List<Post> select() {
-        return new ArrayList<>();
+        return data;
     }
 }
